@@ -1,0 +1,32 @@
+﻿@using CalendarBookingProject.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+
+<div class="jumbotron">
+    <div class="container">
+        <span class="glyphicon glyphicon-list-alt"></span>
+        <h2>Calendar</h2>
+        <div class="errors">
+            @Html.ValidationSummary()
+        </div>
+        <div class="box">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = "" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.TextBoxFor(m => m.Email, new { @placeholder = "Username" })
+                @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
+
+                <button class="btn btn-default full-width"><span class="glyphicon glyphicon-ok"></span></button>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Styles{
+    <link href="@Url.Content("~/Content/login.css")" rel="stylesheet" type="text/css" />
+}
